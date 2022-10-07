@@ -15,13 +15,13 @@ const Navbar = () => {
   const history = useNavigate();
   const classes = useStyles();
 
-  const logout = () => {
+  const logout = useCallback(() => {
     dispatch({ type: actionType.LOGOUT });
 
     history.push('/auth');
 
     setUser(null);
-  };
+  }, [])
 
   useEffect(() => {
     const token = user?.token;
@@ -29,8 +29,8 @@ const Navbar = () => {
     if (token) {
       const decodedToken = decode(token);
 
-      if (decodedToken.exp * 1000 < new Date().getTime());
-      useCallback(logout())
+      if (decodedToken.exp * 1000 < new Date().getTime())logout();
+      
     }
 
     setUser(JSON.parse(localStorage.getItem('profile')));

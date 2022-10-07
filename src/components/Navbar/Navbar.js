@@ -15,13 +15,13 @@ const Navbar = () => {
   const history = useNavigate();
   const classes = useStyles();
 
-  const logout = useCallback(() => {
+  const logout = () => {
     dispatch({ type: actionType.LOGOUT });
 
     history.push('/auth');
 
     setUser(null);
-  }, [dispatch, history])
+  };
 
   useEffect(() => {
     const token = user?.token;
@@ -34,7 +34,7 @@ const Navbar = () => {
     }
 
     setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [logout, user.token, location]);
+  }, [location]);
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">

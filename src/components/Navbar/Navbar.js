@@ -21,7 +21,7 @@ const Navbar = () => {
     history.push('/auth');
 
     setUser(null);
-  }, [])
+  }, [dispatch, history])
 
   useEffect(() => {
     const token = user?.token;
